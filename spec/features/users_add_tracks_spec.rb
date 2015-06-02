@@ -9,7 +9,6 @@ feature "Users add tracks" do
   end
 
   scenario "happy path creating a track" do
-    pending
     signin_as Fabricate(:user)
     visit tracks_path
     click_on "Add New Track"
@@ -25,7 +24,6 @@ feature "Users add tracks" do
   end
 
   scenario "sad path creating a track" do
-    pending
     signin_as Fabricate(:user)
     visit new_track_path
     fill_in "Name", with: "bo"

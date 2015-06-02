@@ -17,9 +17,6 @@ RSpec.describe Track, type: :model do
     it "should be invalid without a distance" do
       Fabricate.build(:track, distance: nil).should_not be_valid
     end
-    it "should be invalid without a outdoor value" do
-      Fabricate.build(:track, outdoor: nil).should_not be_valid
-    end
     it "should have unique names" do
       some_name = Faker::Name.name
       Fabricate(:track, name: some_name)

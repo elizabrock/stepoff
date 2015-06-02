@@ -8,4 +8,24 @@ class TracksController < ApplicationController
       @tracks = Track.all
     end
   end
+
+  def new
+    @track = Track.new
+  end
+
+  def create
+    @track = Track.new(track_params)
+    if @track.save
+      redirect_to tracks_path, notice: "The #{@track.name} Track has been created."
+    else
+      flash.alert = "Please fix the errors below to continue."
+      render :new
+    end
+  end
+
+  private
+
+  def track_params
+    params.require(:track).permit(:name, :distance, :outdoor)
+  end
 end

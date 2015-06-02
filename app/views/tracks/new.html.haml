@@ -1,0 +1,5 @@
+= simple_form_for @track do |f|
+  = f.input :name
+  = f.input :distance
+  = f.input :outdoor, label: "Outdoors"
+  = f.button :submit, "Create Track"

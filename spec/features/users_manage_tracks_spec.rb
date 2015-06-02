@@ -1,8 +1,4 @@
 feature "Users manage tracks" do
-  before do
-    signin_as Fabricate(:user)
-  end
-
   scenario "viewing track list when empty" do
     visit root_path
     click_on "Walking Tracks"
@@ -40,8 +36,6 @@ feature "Users manage tracks" do
     end
   end
 
-  scenario "happy path creating a track"
-  scenario "sad path creating a track"
   scenario "happy path editing a track"
   scenario "sad path editing a track"
   scenario "deleting a path"

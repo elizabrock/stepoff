@@ -3,6 +3,7 @@ feature "User signs in" do
   before do
     visit "/"
     click_on "Sign In"
+    page.should_not have_link("Sign In")
   end
 
   scenario "Returning customer signs in" do
@@ -23,11 +24,9 @@ feature "User signs in" do
 
   scenario "Returning user attempts signin with incorrect password" do
     user = Fabricate(:user, name: "Bob")
-    page.should_not have_content("Sign Up")
     fill_in "Email", with: user.email
     fill_in "Password", with: "wrongpassword"
     click_button "Sign In"
-    page.should_not have_content("Sign Up")
     page.should have_content("We could not sign you in. Please check your email/password and try again.")
     page.should_not have_content("Create your account")
     page.should_not have_content("Password confirmation")

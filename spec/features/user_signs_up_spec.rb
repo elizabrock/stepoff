@@ -6,19 +6,19 @@ feature "User Signs Up" do
   end
 
   scenario "Happy Path" do
+    page.should_not have_link("Sign Up")
     fill_in "Name", with: "Joe"
     fill_in "Email", with: "joe@example.com"
     fill_in "Password", with: "password1"
     fill_in "Password confirmation", with: "password1"
-    click_on "Sign Up"
+    click_button "Sign Up"
     page.should have_content("Welcome, Joe")
-    User.last.tap do |user|
-      user.name.should == "Joe"
-      user.email.should == "joe@example.com"
-    end
-    pending
-    signout
-    signin_as "joe@example.com", "password1"
+    click_on "Sign Out"
+    click_on "Sign In"
+    fill_in "Email", with: "joe@example.com"
+    fill_in "Password", with: "password1"
+    click_button "Sign In"
+    page.should have_content("Welcome back, Joe")
   end
 
   scenario "Error Path" do

@@ -31,7 +31,7 @@ feature "Users add tracks" do
     # uncheck "Outdoor" is implied
     click_on "Create Track"
     page.should have_css(".alert", text: "Please fix the errors below to continue.")
-    page.should have_css(".track_name .error", text: "name should have at least 3 characters")
+    page.should have_css(".track_name .error", text: "should have at least 3 characters")
     page.should have_css(".track_distance .error", text: "must be greater than or equal to 0.1")
     page.should_not have_css(".track_outdoor .error")
     field_labeled("Name").value.should == "bo"

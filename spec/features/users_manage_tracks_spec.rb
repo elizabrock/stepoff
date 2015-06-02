@@ -35,8 +35,4 @@ feature "Users manage tracks" do
       page.should have_css("li:nth-child(3)", text: "Breakroom, 0.1 mile indoors")
     end
   end
-
-  scenario "happy path editing a track"
-  scenario "sad path editing a track"
-  scenario "deleting a path"
 end

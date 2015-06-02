@@ -5,6 +5,8 @@
   = link_to_unless sorted_by_distance, "Sort: Length", tracks_path(sort: :distance)
   = link_to_if sorted_by_distance, "Sort: Alphabetical", tracks_path
 
-  %ul#walking_tracks
-    - @tracks.each do |track|
-      %li #{track.name}, #{track.distance} mile
+%ul#walking_tracks
+  - @tracks.each do |track|
+    %li #{track.name}, #{track.distance} mile
+  - if logged_in?
+    %li= link_to "Add New Track", new_track_path

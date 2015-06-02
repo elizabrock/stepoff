@@ -1,7 +1,4 @@
 feature "Users add tracks" do
-  before do
-    pending
-  end
 
   scenario "user must be logged in to create a track" do
     visit tracks_path

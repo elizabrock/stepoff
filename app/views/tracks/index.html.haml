@@ -7,6 +7,6 @@
 
 %ul#walking_tracks
   - @tracks.each do |track|
-    %li #{track.name}, #{track.distance} mile
+    %li #{track.name}, #{track.distance} mile #{location_of(track)}
   - if logged_in?
     %li= link_to "Add New Track", new_track_path

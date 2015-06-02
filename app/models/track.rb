@@ -1,7 +1,7 @@
 class Track < ActiveRecord::Base
   validates :name, presence: true,
                    length: {minimum: 3,
-                            too_short: "name should have atleast 3 characters"
+                            too_short: "name should have at least 3 characters"
                            },
                    uniqueness: true
   validates :distance, presence: true,

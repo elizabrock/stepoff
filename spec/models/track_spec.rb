@@ -25,9 +25,9 @@ RSpec.describe Track, type: :model do
       Fabricate(:track, name: some_name)
       Fabricate.build(:track, name: some_name).should_not be_valid
     end
-    it "should round distances to the nearest tenth" do
-      track1 = Fabricate(:track, distance: 0.26)
-      track1.distance.should eq(0.3)
+    it "should round distances to the nearest hundredth" do
+      track1 = Fabricate(:track, distance: 0.265)
+      track1.distance.should eq(0.27)
     end
     it "should be invalid if distance is < 0.1" do
       Fabricate.build(:track, distance: -0.5).should_not be_valid

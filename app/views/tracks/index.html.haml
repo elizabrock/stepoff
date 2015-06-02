@@ -1,0 +1,10 @@
+- if @tracks.empty?
+  %p There aren't any tracks yet.  You should add one!
+- else
+  - sorted_by_distance = (params[:sort] == "distance")
+  = link_to_unless sorted_by_distance, "Sort: Length", tracks_path(sort: :distance)
+  = link_to_if sorted_by_distance, "Sort: Alphabetical", tracks_path
+
+  %ul#walking_tracks
+    - @tracks.each do |track|
+      %li #{track.name}, #{track.distance} mile

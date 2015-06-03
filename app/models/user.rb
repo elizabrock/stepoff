@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :laps
   authenticates_with_sorcery!
 
   validates :email, :name, presence: true

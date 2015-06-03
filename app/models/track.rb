@@ -1,4 +1,5 @@
 class Track < ActiveRecord::Base
+  has_many :laps
   validates :name, presence: true,
                    length: {minimum: 3,
                             too_short: "name should have at least 3 characters"

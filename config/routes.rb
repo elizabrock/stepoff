@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
 
-  resources :tracks, except: [:destroy]
+  resources :tracks, except: [:show]
   resource :user_session, only: [:new, :create, :destroy]
   resources :users, only: [:new, :create]
 

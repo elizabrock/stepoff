@@ -42,12 +42,11 @@ feature "Users edit and delete tracks" do
   end
 
   scenario "deleting a track" do
-    pending
     signin_as Fabricate(:user)
     visit tracks_path
     page.should have_content("Thunderrome")
     click_on "Delete"
-    page.should have_notice("Thunderrome Track has been deleted.")
+    page.should have_css(".notice", text: "Thunderrome Track has been deleted.")
     within("ul#walking_tracks") do
       page.should_not have_content("Thunderrome")
     end

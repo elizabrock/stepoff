@@ -1,10 +1,6 @@
 feature "Users edit and delete tracks" do
   let!(:track){ Fabricate(:track, name: "Thunderrome", distance: 100, outdoor: true) }
 
-  before do
-    pending
-  end
-
   scenario "user must be logged in to edit/delete a track" do
     visit tracks_path
     page.should_not have_content("Edit")
@@ -19,7 +15,7 @@ feature "Users edit and delete tracks" do
     visit tracks_path
     click_on "Edit"
     field_labeled("Name").value.should == "Thunderrome"
-    field_labeled("Distance").value.should == "100"
+    field_labeled("Distance").value.should == "100.0"
     field_labeled("Outdoors").should be_checked
     fill_in "Name", with: "Thunderdome"
     fill_in "Distance", with: 0.5
@@ -38,14 +34,15 @@ feature "Users edit and delete tracks" do
     fill_in "Distance", with: "-0.5"
     click_on "Save Changes"
     page.should have_css(".alert", text: "Please fix the errors below to continue.")
-    page.should have_css(".track_name .error", text: "should have at least 3 characters")
-    page.should have_css(".track_distance .error", text: "must be greater than or equal to 0.1")
     field_labeled("Name").value.should == "TD"
     field_labeled("Distance").value.should == "-0.5"
     field_labeled("Outdoors").should be_checked
+    page.should have_css(".track_name .error", text: "should have at least 3 characters")
+    page.should have_css(".track_distance .error", text: "must be greater than or equal to 0.1")
   end
 
   scenario "deleting a track" do
+    pending
     signin_as Fabricate(:user)
     visit tracks_path
     page.should have_content("Thunderrome")

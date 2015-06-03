@@ -23,6 +23,21 @@ class TracksController < ApplicationController
     end
   end
 
+  def edit
+    @track = Track.find(params[:id])
+  end
+
+  def update
+    @track = Track.find(params[:id])
+    if @track.update_attributes(track_params)
+      flash.notice = "#{@track.name} Track was updated successfully"
+      redirect_to tracks_path
+    else
+      flash.alert = "Please fix the errors below to continue."
+      render :edit
+    end
+  end
+
   private
 
   def track_params

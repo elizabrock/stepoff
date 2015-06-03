@@ -1,0 +1,6 @@
+= simple_form_for track do |f|
+  = f.input :name
+  = f.input :distance
+  = f.input :outdoor, label: "Outdoors"
+  - button_text = (track.persisted?) ? "Save Changes" : "Create Track"
+  = f.button :submit, button_text

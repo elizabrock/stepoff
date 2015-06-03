@@ -13,7 +13,13 @@ class Track < ActiveRecord::Base
 
   default_scope ->{ order(:name) }
 
+  def minimum_completion_time
+    return unless distance.present? && distance > 0
+    distance * 450
+  end
+
   protected
+
   def round_distance
     unless self.distance.nil?
       self.distance = self.distance.round(2)

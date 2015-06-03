@@ -33,4 +33,27 @@ RSpec.describe Track, type: :model do
   it "should have a factory" do
     Fabricate.build(:track).should be_valid
   end
+
+  describe "#minimum_completion_time calculates time based on 7.5 minute mile" do
+    it "works for a small track" do
+      track = Fabricate(:track, distance: 0.1)
+      track.minimum_completion_time.should == 45
+    end
+    it "works for a long track" do
+      track = Fabricate(:track, distance: 1)
+      track.minimum_completion_time.should == 450
+    end
+    it "doesn't explode with negative distance" do
+      track = Fabricate.build(:track, distance: -1)
+      track.minimum_completion_time.should be_nil
+    end
+    it "doesn't explode with 0 distance" do
+      track = Fabricate.build(:track, distance: 0)
+      track.minimum_completion_time.should be_nil
+    end
+    it "doesn't explode with nil distance" do
+      track = Fabricate.build(:track, distance: nil)
+      track.minimum_completion_time.should be_nil
+    end
+  end
 end
